@@ -1,0 +1,31 @@
+{
+  "name": "locadora-js-server",
+  "version": "1.0.0",
+  "description": "locadora's server ",
+  "main": "server.js",
+  "scripts": {
+    "start": "nodemon --ext js,html,css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiagoMartinsSaraiva/LocadoraJS.git"
+  },
+  "keywords": [
+    "js",
+    "locadora",
+    "server",
+    "node.js"
+  ],
+  "author": "Thiago Martins Saraiva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThiagoMartinsSaraiva/LocadoraJS/issues"
+  },
+  "homepage": "https://github.com/ThiagoMartinsSaraiva/LocadoraJS#readme",
+  "devDependencies": {
+    "nodemon": "^1.19.4"
+  },
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
