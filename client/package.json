@@ -1,0 +1,30 @@
+{
+  "name": "locadora-js-client",
+  "version": "1.0.0",
+  "description": "locadora's client",
+  "scripts": {
+    "start": "nodemon main.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ThiagoMartinsSaraiva/LocadoraJS.git"
+  },
+  "keywords": [
+    "javascript",
+    "js",
+    "html",
+    "css"
+  ],
+  "author": "Thiago Martins Saraiva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ThiagoMartinsSaraiva/LocadoraJS/issues"
+  },
+  "homepage": "https://github.com/ThiagoMartinsSaraiva/LocadoraJS#readme",
+  "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "jquery": "^3.4.1"
+  }
+}
