@@ -6,25 +6,21 @@ const port = 3000
 const database = require('./database')
 
 app.use(cors())
-app.use(bodyParser.json())
+// app.use(bodyParser.json())
 
 app.get('/filme', (req, res) => {
-  res.send(database.getAllFilmes)
+  res.json(database.getAllFilmes())
 })
 
-app.get('/filme/:id', (req, res) => {
-  res.send(database.getFilme(req.params.id))
-})
+// app.get('/filme/:id', (req, res) => {
+//   console.log(req.params['id'])
+//   res.json(database.getFilme(req.params["id"]))
+// })
 
-app.post('/filme', (req , res) =>{
-  console.log(req.body)
-  // const filme = database.saveFilme({
-  //   nome : req.body.nome,
-  //   avaliacao : req.body.avaliacao,
-  //   duracao : req.body.duracao
-  // })
-  console.log('POST /filme')
-  return res.json('filme')
+app.get('/filme/criar', (req , res) =>{
+  console.log('GET /filme')
+  return res.json(req.body)
+  // return res.json('filme')
 })
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
