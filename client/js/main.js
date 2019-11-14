@@ -5,9 +5,13 @@ myObj = {
   duracao: '10'
 }
 
-fetch('http://localhost:3000/filme/criar', {
-  method: 'get',
-  headers: JSON.stringify(myObj)
+fetch('http://localhost:3000/filme', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+  body: JSON.stringify(myObj)
 })
-  .then(res => console.log(myObj))
+  .then(() => console.log(myObj))
   .catch(err => console.log(err))
