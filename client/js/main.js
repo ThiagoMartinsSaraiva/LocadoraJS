@@ -1,17 +1,11 @@
-myObj = {
-  id: 4,
-  nome: 'Birl',
-  avaliacao: '10',
-  duracao: '10'
-}
-
 fetch('http://localhost:3000/filme', {
   method: 'POST',
   headers: {
     'Accept': 'application/json',
     'Content-Type': 'application/json'
   },
-  body: JSON.stringify(myObj)
+  body: JSON.stringify({})
 })
-  .then(() => console.log(myObj))
+  .then(res => console.log(res))
+  .finally(() => console.log('Inserido com sucesso!'))
   .catch(err => console.log(err))
