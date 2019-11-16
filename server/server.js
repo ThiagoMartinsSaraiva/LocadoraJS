@@ -7,22 +7,25 @@ const database = require('./database')
 
 app.use(cors())
 app.use(bodyParser.json())
-app.use(express.json())
 
 app.get('/filme', (req, res) => {
-  res.json(database.getAllFilmes())
+  res.json(database.obterTodosFilmes())
 })
 
 app.get('/filme/:id', (req, res) => {
-  console.log(req.params['id'])
-  res.json(database.getFilme(req.params["id"]))
+  res.json(database.obterFilmePorId(req.params["id"]))
 })
 
-app.post('/filme', (req , res) =>{
-  console.log('POST /filme')
-  console.log(req.body)
-  database.saveFilme(req.body)
-  return res.json(req.body)
+app.post('/filme', (req, res) => {
+  database.adicionarFilme(req.body)
+})
+
+app.put('/filme/:id', (req, res) => {
+  database.atualizarFilme(req.body)
+})
+
+app.delete('/filme/:id', (req, res) => {
+  database.excluirFilme(id)
 })
 
 app.listen(port, () => console.log(`Server running on port ${port}`))
