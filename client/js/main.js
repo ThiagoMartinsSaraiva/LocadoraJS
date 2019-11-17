@@ -58,4 +58,8 @@ function excluirFilme(id) {
     .catch(err => console.log(err))
 }
 
+function atualizarFilme(id) {
+  window.location.href = `./formulario.html?id=${id}`
+}
+
 obterFilmes()
