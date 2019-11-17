@@ -1,5 +1,23 @@
 const apiURL = 'http://localhost:3000/filme'
 const dataTable = document.getElementById('data-table')
+let rows = []
+
+function renderizarLista(object) {
+  dataTable.innerHTML = ''
+  let renderizar = []
+  object.forEach(row => {
+    renderizar.push(
+      `<tr>
+        <td>${row.id}</td>
+        <td>${row.nome}</td>
+        <td>${row.statusLocacao}</td>
+        <td>${row.multaAplicada}</td>
+        <td>${row.sinopse || 'Misterioso'}</td>
+        <td><span onclick="atualizarFilme(${row.id})">Editar</span> | <span onclick="excluirFilme(${row.id})">Excluir</span></td>
+      </tr>`)
+    })
+    dataTable.innerHTML += (renderizar.join(''))
+}
 
 function obterFilmes() {
   fetch(apiURL, {
@@ -7,23 +25,25 @@ function obterFilmes() {
   })
   .then(res => res.json())
   .then(data => {
-    let rows = []
     data.forEach(filme => {
-      rows.push(`<tr>
-        <td>${filme.id}</td>
-        <td>${filme.nome}</td>
-        <td>${filme.statusLocacao}</td>
-        <td>${filme.multaAplicada}</td>
-        <td>${filme.sinopse}</td>
-        <td>Editar | Excluir</td>
-      </tr>`)
+      rows.push(filme)
     })
-    dataTable.innerHTML += (rows.join(''))
+    renderizarLista(rows)
   })
   .catch(err => console.log('err', err))
 }
 
 obterFilmes()
+
+function pesquisar(target) {
+  let filteredList = []
+  if (target.value) {
+    filteredList = [...rows.filter(row => row.nome.toLowerCase().includes(target.value.toLowerCase()) || row.id == target.value)]
+    renderizarLista(filteredList)
+  } else {
+    renderizarLista(rows)
+  }
+}
 
 function obterFilme() {
 
