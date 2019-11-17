@@ -33,8 +33,6 @@ function obterFilmes() {
   .catch(err => console.log('err', err))
 }
 
-obterFilmes()
-
 function pesquisar(target) {
   let filteredList = []
   if (target.value) {
@@ -45,28 +43,19 @@ function pesquisar(target) {
   }
 }
 
-function obterFilme() {
-
-}
-
-function adicionarFilme() {
-  fetch(api, {
-    method: 'POST',
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({})
+function excluirFilme(id) {
+  fetch(`${apiURL}/${id}`, {
+    method: 'DELETE'
   })
-    .then(res => console.log(res))
-    .finally(() => console.log('Inserido com sucesso!'))
+    .then((res) => res.json())
+    .then(data => console.log(data))
+    .then(() => {
+      let removedItem = rows.find(row => row.id == id)
+      let index = rows.indexOf(removedItem)
+      rows.splice(index, 1)
+      renderizarLista(rows)
+    })
     .catch(err => console.log(err))
 }
 
-function atualizarFilme() {
-
-}
-
-function excluirFilme() {
-
-}
+obterFilmes()
