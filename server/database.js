@@ -1,30 +1,55 @@
-const filmes = [
-	{ id : 0 , nome: 'Avatar', avaliacao: 7, duracao: 120 },
-	{ id : 1 , nome: 'Joker', avaliacao: 10, duracao: 210 },
-	{ id : 2 , nome: 'Wolverine', avaliacao: 10, duracao: 140 },
-	{ id : 3 , nome: 'Dance', avaliacao: 3, duracao: 120 }
-]
+require('dotenv').config()
+
+const knex = require('knex')({
+	client: 'mysql',
+	connection:{
+		host: process.env.DBHOST,
+		user: process.env.DBUSER,
+		password: process.env.DBPASSWORD,
+		database: process.env.DBNAME
+	}
+})
 
 module.exports = {
-	adicionarFilme(filme){
-		filmes.push(filme)
-	},
-	obterFilmePorId(id) {
-		return filmes.find(filme => filme.id == id) || 'Nenhum filme encontrado'
-	},
-	obterTodosFilmes() {
-		return filmes;
-	},
-	atualizarFilme(data) {
-		const { id } = data
-		let filme = filmes.find(filme => filme.id == id)
-		if (filme) {
-			filme = { ...data }
+	async adicionarFilme(filme){
+		try {
+			return await knex('filme').insert(filme)
+		} catch (err) {
+			throw new Error(err.sqlMessage)
 		}
-		return filme
 	},
-	excluirFilme(id) {
-		filmes.slice(id, 1)
-		return filmes;
+	async obterFilmePorId(id) {
+		try {
+			return await knex('filme').where({id}).first().select()
+		} catch(err) {
+			throw new Error(err.sqlMessage)
+		}
+	},
+	async obterTodosFilmes() {
+		try {
+			return await knex('filme').select()
+		} catch(err) {
+			throw new Error(err.sqlMessage)
+		}
+	},
+	async atualizarFilme(id, data) {
+		try {
+			if (data.id) delete data.id
+			if (id > 0) {
+				let filme = await this.obterFilmePorId(id)
+				if (filme) {
+					return await knex('filme').where({id}).update(data)
+				}
+			}
+		} catch(err) {
+			throw new Error(err.sqlMessage)
+		}
+	},
+	async excluirFilme(id) {
+		try {
+			return await knex('filme').where({id}).delete()
+		} catch(err) {
+			throw new Error(err.sqlMessage)
+		}
 	}
 }
