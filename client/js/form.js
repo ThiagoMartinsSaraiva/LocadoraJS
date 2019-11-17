@@ -51,7 +51,7 @@ function adicionarFilme() {
   })
     .then((res) => res.json())
     .then(data => console.log(data))
-    .then(() => window.location.href="./index.html")
+    .then(() => window.location.href="./filme.html")
     .catch(err => console.log(err))
 }
 
@@ -72,7 +72,7 @@ function atualizarFilme(id) {
   })
     .then((res) => res.json())
     .then(data => console.log(data))
-    .then(() => window.location.href="./index.html")
+    .then(() => window.location.href="./filme.html")
     .catch(err => console.log(err))
 }
 
