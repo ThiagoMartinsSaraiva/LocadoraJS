@@ -32,7 +32,6 @@ function adicionarFilme() {
     .then((res) => res.json())
     .then(data => console.log(data))
     .then(() => window.location.href="./index.html")
-    .finally(() => console.log('Inserido com sucesso!'))
     .catch(err => console.log(err))
 }
 
