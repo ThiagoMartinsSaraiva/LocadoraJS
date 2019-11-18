@@ -1,0 +1,8 @@
+.rotate-text {
+  text-shadow: 1px 1px 1px #f00;
+  transition: .4s all ;
+}
+
+.rotate-text:hover {
+  transform: rotate(360deg)
+}
