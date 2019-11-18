@@ -6,3 +6,12 @@
 .rotate-text:hover {
   transform: rotate(360deg)
 }
+
+.content {
+  box-shadow: 1px 1px 2px 1.8px #0006;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+}
