@@ -9,9 +9,11 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get('/filme', (req, res) => {
-  database.obterTodosFilmes()
-  .then(result => res.json(result))
-  .catch(err => console.log(err))
+  setTimeout(() => {
+    database.obterTodosFilmes()
+    .then(result => res.json(result))
+    .catch(err => console.log(err))
+  }, 100);
 })
 
 app.get('/filme/:id', (req, res) => {
