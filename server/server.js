@@ -27,6 +27,11 @@ app.post('/filme', (req, res) => {
   res.json(req.body)
 })
 
+app.post('/login', (req, res) => {
+  database.logar(req.body)
+  database.logar(req.body).then(data => res.json(data))
+})
+
 app.put('/filme/:id', (req, res) => {
   database.atualizarFilme(req.params["id"], req.body)
   res.json(req.body)
