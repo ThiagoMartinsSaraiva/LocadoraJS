@@ -20,6 +20,7 @@ function renderizarLista(object) {
 }
 
 function obterFilmes() {
+  dataTable.innerHTML = '<img src="./images/loading.gif">'
   fetch(apiURL, {
     method: 'GET'
   })
@@ -28,8 +29,8 @@ function obterFilmes() {
     data.forEach(filme => {
       rows.push(filme)
     })
-    renderizarLista(rows)
   })
+  .finally(() => renderizarLista(rows))
   .catch(err => console.log('err', err))
 }
 
@@ -53,8 +54,8 @@ function excluirFilme(id) {
       let removedItem = rows.find(row => row.id == id)
       let index = rows.indexOf(removedItem)
       rows.splice(index, 1)
-      renderizarLista(rows)
     })
+    .finally(() => renderizarLista(rows))
     .catch(err => console.log(err))
 }
 
