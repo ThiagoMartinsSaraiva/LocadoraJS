@@ -28,7 +28,6 @@ app.post('/filme', (req, res) => {
 })
 
 app.post('/login', (req, res) => {
-  database.logar(req.body)
   database.logar(req.body).then(data => res.json(data))
 })
 
