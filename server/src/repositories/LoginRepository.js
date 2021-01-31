@@ -1,16 +1,15 @@
+const knex = require('../database')
+
 class LoginRepository {
-  async logar(data) {
-    try {
-      const { login, senha } = data
-      const usuario = await knex('usuario').where({login, senha}).first().select()
-      if (usuario) {
-        return "Sim"
-      } else {
-        return "Não"
-      }
-    } catch(err) {
-      throw new Error(err.sqlMessage)
+  async login(data) {
+    const { username, password } = data
+    const user = await knex.select('user').where({ username, password }).first().select()
+
+    if (!user) {
+      throw new Error('Fail to login')
     }
+
+    return { user }
   }
 }
 
