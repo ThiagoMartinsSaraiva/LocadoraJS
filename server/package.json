@@ -2,7 +2,7 @@
   "name": "locadora-js-server",
   "version": "1.0.0",
   "description": "locadora's server ",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "start": "nodemon --ext js,html,css"
   },
