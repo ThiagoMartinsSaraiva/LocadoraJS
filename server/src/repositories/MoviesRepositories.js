@@ -1,25 +1,28 @@
-module.exports = {
+class MoviesRepository {
 	async adicionarFilme(filme){
 		try {
 			return await knex('filme').insert(filme)
 		} catch (err) {
 			throw new Error(err.sqlMessage)
 		}
-	},
+  }
+
 	async obterFilmePorId(id) {
 		try {
 			return await knex('filme').where({id}).first().select()
 		} catch(err) {
 			throw new Error(err.sqlMessage)
 		}
-	},
+  }
+
 	async obterTodosFilmes() {
 		try {
 			return await knex('filme').select()
 		} catch(err) {
 			throw new Error(err.sqlMessage)
 		}
-	},
+  }
+
 	async atualizarFilme(id, data) {
 		try {
 			if (data.id) delete data.id
@@ -32,12 +35,15 @@ module.exports = {
 		} catch(err) {
 			throw new Error(err.sqlMessage)
 		}
-	},
+  }
+
 	async excluirFilme(id) {
 		try {
 			return await knex('filme').where({id}).delete()
 		} catch(err) {
 			throw new Error(err.sqlMessage)
 		}
-	},
+	}
 }
+
+module.exports = MoviesRepository
