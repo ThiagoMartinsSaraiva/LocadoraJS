@@ -1,12 +1,16 @@
 const { Router } = require('express')
 const moviesRouter = require('./movies.routes')
 
-const routes = Router()
+const router = Router()
 
-routes.post('/login', (request, response) => {
+router.get("/", (request, response) => {
+  response.json({ message: "API is Working" })
+})
+
+router.post('/login', (request, response) => {
   response.json({ message: 'logado com sucesso!' })
 })
 
-routes.use('/movies', moviesRouter)
+router.use('/movies', moviesRouter)
 
-module.exports = routes
+module.exports = router
