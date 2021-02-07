@@ -1,5 +1,7 @@
 const { Router } = require('express')
-const MoviesRepository = require('../repositories/MoviesRepositories')
+const MoviesRepository = require('../repositories/MoviesRepository')
+const DeleteMovieService = require('../services/DeleteMovieService')
+const UpdateMovieService = require('../services/UpdateMovieService')
 
 const moviesRouter = Router()
 
@@ -40,7 +42,8 @@ moviesRouter.put('/:id', async (request, response) => {
   try {
     const { id } = request.params
     const { title, synopsis, duration } = request.body
-    const movie = await moviesRepository.update({ id, title, synopsis, duration })
+    const updateMovieService = new UpdateMovieService()
+    const movie = await updateMovieService.execute({ id, title, synopsis, duration })
 
     return response.json({ movie })
   } catch (err) {
@@ -51,7 +54,8 @@ moviesRouter.put('/:id', async (request, response) => {
 moviesRouter.delete('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    await moviesRepository.delete(id)
+    const deleteMovieService = new DeleteMovieService()
+    await deleteMovieService.execute(id)
 
     return response.status(201).json()
   } catch (err) {
