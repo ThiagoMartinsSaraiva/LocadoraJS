@@ -17,9 +17,9 @@ moviesRouter.get('/', async (request, response) => {
 moviesRouter.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const movies = await moviesRepositories.getById(id)
+    const movie = await moviesRepositories.getById(id)
 
-    return response.json({ movies })
+    return response.json({ movie })
   } catch (err) {
     response.status(400).json({ error: err.message })
   }
