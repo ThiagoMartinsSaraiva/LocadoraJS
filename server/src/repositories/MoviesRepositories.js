@@ -1,29 +1,33 @@
+const knex = require("../database")
 class MoviesRepository {
-	async adicionarFilme(filme){
-		try {
-			return await knex('filme').insert(filme)
-		} catch (err) {
-			throw new Error(err.sqlMessage)
+	constructor() {
+		this.table = 'movies'
+	}
+
+	async create({ title, synopsis, duration }){
+		const movie = {
+			title,
+			synopsis,
+			duration
 		}
+
+		const createdMovie = await knex.table(this.table).insert(movie)
+		const [id] = createdMovie
+
+		movie.id = id
+
+		return movie
   }
 
-	async obterFilmePorId(id) {
-		try {
-			return await knex('filme').where({id}).first().select()
-		} catch(err) {
-			throw new Error(err.sqlMessage)
-		}
+	async getById(id) {
+		return await knex.table(this.table).where({ id })
   }
 
-	async obterTodosFilmes() {
-		try {
-			return await knex('filme').select()
-		} catch(err) {
-			throw new Error(err.sqlMessage)
-		}
+	async all() {
+		return await knex.table(this.table).select()
   }
 
-	async atualizarFilme(id, data) {
+	async update(id, data) {
 		try {
 			if (data.id) delete data.id
 			if (id > 0) {
@@ -37,7 +41,7 @@ class MoviesRepository {
 		}
   }
 
-	async excluirFilme(id) {
+	async delete(id) {
 		try {
 			return await knex('filme').where({id}).delete()
 		} catch(err) {

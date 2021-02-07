@@ -1,18 +1,39 @@
 const { Router } = require('express')
+const MoviesRepository = require('../repositories/MoviesRepositories')
 
 const moviesRouter = Router()
 
-moviesRouter.get('/', (request, response) => {
-  response.json({ message: 'Movies is working' })
+const moviesRepositories = new MoviesRepository()
+
+moviesRouter.get('/', async (request, response) => {
+  try {
+    const movies = await moviesRepositories.all()
+    return response.json({ movies })
+  } catch (err) {
+    response.status(400).json({ error: err.message })
+  }
 })
 
-moviesRouter.get('/:id', (request, response) => {
-  const { id } = request.params
-  response.json({ message: `movie ${id} is working` })
+moviesRouter.get('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+    const movies = await moviesRepositories.getById(id)
+
+    return response.json({ movies })
+  } catch (err) {
+    response.status(400).json({ error: err.message })
+  }
 })
 
-moviesRouter.post('/', (request, response) => {
-  response.json({ message: 'Movies insert is working' })
+moviesRouter.post('/', async (request, response) => {
+  try {
+    const { title, synopsis, duration } = request.body
+    const movie = await moviesRepositories.create({ title, synopsis, duration })
+
+    return response.json({ movie })
+  } catch (err) {
+    response.status(400).json({ error: err.message })
+  }
 })
 
 moviesRouter.put('/:id', (request, response) => {
