@@ -3,11 +3,11 @@ const MoviesRepository = require('../repositories/MoviesRepositories')
 
 const moviesRouter = Router()
 
-const moviesRepositories = new MoviesRepository()
+const moviesRepository = new MoviesRepository()
 
 moviesRouter.get('/', async (request, response) => {
   try {
-    const movies = await moviesRepositories.all()
+    const movies = await moviesRepository.all()
     return response.json({ movies })
   } catch (err) {
     response.status(400).json({ error: err.message })
@@ -17,7 +17,7 @@ moviesRouter.get('/', async (request, response) => {
 moviesRouter.get('/:id', async (request, response) => {
   try {
     const { id } = request.params
-    const movie = await moviesRepositories.getById(id)
+    const movie = await moviesRepository.getById(id)
 
     return response.json({ movie })
   } catch (err) {
@@ -28,7 +28,7 @@ moviesRouter.get('/:id', async (request, response) => {
 moviesRouter.post('/', async (request, response) => {
   try {
     const { title, synopsis, duration } = request.body
-    const movie = await moviesRepositories.create({ title, synopsis, duration })
+    const movie = await moviesRepository.create({ title, synopsis, duration })
 
     return response.json({ movie })
   } catch (err) {
@@ -36,12 +36,27 @@ moviesRouter.post('/', async (request, response) => {
   }
 })
 
-moviesRouter.put('/:id', (request, response) => {
-  response.json({ message: 'Movies updating is working' })
+moviesRouter.put('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+    const { title, synopsis, duration } = request.body
+    const movie = await moviesRepository.update({ id, title, synopsis, duration })
+
+    return response.json({ movie })
+  } catch (err) {
+    response.status(400).json({ error: err.message })
+  }
 })
 
-moviesRouter.delete('/:id', (request, response) => {
-  response.json({ message: 'Movies deleting is working' })
+moviesRouter.delete('/:id', async (request, response) => {
+  try {
+    const { id } = request.params
+    await moviesRepository.delete(id)
+
+    return response.status(201).json()
+  } catch (err) {
+    response.status(400).json({ error: err.message })
+  }
 })
 
 module.exports = moviesRouter
