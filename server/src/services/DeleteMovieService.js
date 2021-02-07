@@ -15,8 +15,6 @@ class DeleteMovieService {
     if (!movieExist) {
       throw new Error ("Filme não encontrado!")
     }
-
-    // return await this.moviesRepository.delete(id)
   }
 }
 
