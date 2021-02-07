@@ -1,6 +1,6 @@
 const knex = require('../database')
 
-class LoginRepository {
+class UserRepository {
   async login(data) {
     const { username, password } = data
     const user = await knex.select('user').where({ username, password }).first().select()
@@ -13,4 +13,4 @@ class LoginRepository {
   }
 }
 
-module.exports = LoginRepository
+module.exports = UserRepository
