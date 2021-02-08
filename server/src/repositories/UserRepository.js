@@ -1,15 +1,29 @@
+const { hash } = require('bcryptjs');
 const knex = require('../database')
 
 class UserRepository {
-  async login(data) {
-    const { username, password } = data
-    const user = await knex.select('user').where({ username, password }).first().select()
+  constructor() {
+    this.table = 'users'
+  }
 
-    if (!user) {
-      throw new Error('Fail to login')
-    }
+  async getByUsername(username) {
+    return await knex.table(this.table).where({ username })
+  }
 
-    return { user }
+  async create({ username, password }){
+    const hashedPassword = await hash(password, 8);
+
+		const user = {
+			username,
+      password: hashedPassword,
+		}
+
+		const createdUser = await knex.table(this.table).insert(user)
+		const [id] = createdUser
+
+		user.id = id
+
+		return user
   }
 }
 
