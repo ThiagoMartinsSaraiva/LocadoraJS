@@ -14,11 +14,6 @@ export default {
       token: null
     }
   },
-  created() {
-    this.$store.dispatch('login')
-    this.user = this.$store.state.user
-    this.token = this.$store.state.token
-  },
   computed: {
     isLoggedIn() {
       return this.$store.getters.isLoggedIn
