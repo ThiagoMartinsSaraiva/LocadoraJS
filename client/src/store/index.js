@@ -8,7 +8,7 @@ export default createStore({
     }
   },
   mutations: {
-    login(state,{ token, user}) {
+    login(state,{ token, user }) {
       state.token = token
       state.user = user
     },
@@ -26,7 +26,6 @@ export default createStore({
       commit('logout')
     }
   },
-  modules: {},
   getters: {
     isLoggedIn: state => !!state.token,
   },
