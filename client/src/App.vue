@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Bem-vindo à locadora!</h1>
-    {{ isLoggedIn }} - {{ user }} - {{ token }}
+    <router-view></router-view>
   </div>
 </template>
 
