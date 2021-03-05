@@ -1,19 +1,28 @@
 <template>
-  <h1>Bem-vindo à locadora!</h1>
-  <login />
-  <movies-list />
-  <movie-form />
+  <div>
+    <h1>Bem-vindo à locadora!</h1>
+    {{ isLoggedIn }} - {{ user }} - {{ token }}
+  </div>
 </template>
 
 <script>
-import Login from './views/Login'
-import MoviesList from './views/MoviesList'
-import MovieForm from './views/MovieForm'
 export default {
-  components: {
-    Login,
-    MoviesList,
-    MovieForm,
+  components: {},
+  data() {
+    return {
+      user: {},
+      token: null
+    }
+  },
+  created() {
+    this.$store.dispatch('login')
+    this.user = this.$store.state.user
+    this.token = this.$store.state.token
+  },
+  computed: {
+    isLoggedIn() {
+      return this.$store.getters.isLoggedIn
+    },
   }
 }
 </script>
