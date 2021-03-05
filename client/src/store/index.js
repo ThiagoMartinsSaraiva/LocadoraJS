@@ -17,12 +17,8 @@ export default createStore({
     }
   },
   actions: {
-    login({ commit }) {
-      const token = '123123213'
-      const user = {
-        name: 'thiago',
-        email: 'thiagomartinssaraiva@gmail.com',
-      }
+    login({ commit }, user) {
+      const token = ''
 
       commit('login', { token, user })
     },
