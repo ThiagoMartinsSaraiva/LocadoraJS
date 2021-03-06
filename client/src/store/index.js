@@ -3,18 +3,29 @@ import { createStore } from "vuex";
 export default createStore({
   state() {
     return {
-      token: localStorage.getItem('@locadora/token') || '',
-      user: {},
+      token: JSON.parse(localStorage.getItem('@locadora/token')) || null,
+      user: JSON.parse(localStorage.getItem('@locadora/user')) || {
+        id: null,
+        username: null,
+      },
     }
   },
   mutations: {
     login(state,{ token, user }) {
       state.token = token
       state.user = user
+      localStorage.setItem('@locadora/user', JSON.stringify(state.user))
     },
     logout(state) {
+      localStorage.removeItem('@locadora/user')
+      localStorage.removeItem('@locadora/token')
+
       state.token = ''
-    }
+      state.user = {
+        id: null,
+        username: null,
+      }
+    },
   },
   actions: {
     login({ commit }, user) {
@@ -27,6 +38,6 @@ export default createStore({
     }
   },
   getters: {
-    isLoggedIn: state => !!state.token,
+    isLoggedIn: state => !!state.user.username,
   },
 });
