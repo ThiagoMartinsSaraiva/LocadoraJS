@@ -30,7 +30,7 @@ export default {
   },
   methods: {
     login() {
-      axios.post('http://localhost:3001/users/login', {
+      axios.post(`http://${window.location.hostname}:3001/users/login`, {
         ...this.form
       })
       .then(({ data }) => {
