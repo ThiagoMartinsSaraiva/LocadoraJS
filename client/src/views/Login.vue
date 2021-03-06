@@ -7,7 +7,7 @@
           <input v-model="form.username" type="text" placeholder="username">
         </div>
         <div>
-          <input v-model="form.password" type="text" placeholder="password">
+          <input v-model="form.password" type="password" placeholder="password">
         </div>
         <div>
           <button>Sign in</button>
