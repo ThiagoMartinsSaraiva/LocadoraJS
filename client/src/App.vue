@@ -1,39 +1,72 @@
 <template>
   <div>
-    <div>
-      <div v-if="isLoggedIn">
-        <router-link to="/movies">Movies</router-link>
-      </div>
-      <div>
-        <router-link to="/">Home</router-link>
-        <router-link to="/login">Sign in</router-link>
-        <button v-if="isLoggedIn" type="button" @click="logout">Logout</button>
-      </div>
-    </div>
+    <app-menu />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+import AppMenu from '@/components/AppMenu'
 export default {
-  components: {},
+  components: {
+    AppMenu,
+  },
   data() {
     return {
       user: {},
       token: null
     }
   },
-  computed: {
-    isLoggedIn() {
-      return this.$store.getters.isLoggedIn
-    },
-  },
-  methods: {
-    logout() {
-      this.$store.dispatch('logout')
-    },
-  }
 }
 </script>
 
-<style lang="scss"></style>
+<style lang="scss">
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, button, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+  outline: 0;
+  background-color: transparent;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+a{
+  text-decoration: none;
+}
+</style>
