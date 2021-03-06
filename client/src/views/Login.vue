@@ -40,6 +40,7 @@ export default {
       .then(({ data }) => {
         const { id, username } = data.user
         this.$store.dispatch('login', { id, username })
+        this.$router.push({ name: 'movies' })
       })
       .catch(() => {
         //tratativa de erro futura
