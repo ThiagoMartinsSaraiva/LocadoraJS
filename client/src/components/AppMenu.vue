@@ -5,7 +5,7 @@
     </div>
     <div class="menu-container__action-items">
       <router-link to="/" class="menu-item">Home</router-link>
-      <router-link to="/login" class="menu-item">Sign in</router-link>
+      <router-link v-if="!isLoggedIn"  to="/login" class="menu-item">Sign in</router-link>
       <button v-if="isLoggedIn" type="button" class="menu-item" @click="logout">Logout</button>
     </div>
   </div>
