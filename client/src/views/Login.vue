@@ -18,6 +18,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   data() {
     return {
@@ -29,7 +30,16 @@ export default {
   },
   methods: {
     login() {
-      this.$store.dispatch('login', { ...this.form })
+      axios.post('http://localhost:3001/users/login', {
+        ...this.form
+      })
+      .then(({ data }) => {
+        const { id, username } = data.user
+        this.$store.dispatch('login', { id, username })
+      })
+      .catch(() => {
+        //tratativa de erro futura
+      })
     },
   },
 }
