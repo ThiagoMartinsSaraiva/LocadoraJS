@@ -27,29 +27,29 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .menu-container {
+.menu-container {
+  display: flex;
+  padding: 20px 30px;
+  background-color: #333;
+  justify-content: flex-end;
+  gap: 20px; 
+
+  &__app-items {
+    flex: 1;
+  }
+
+  &__action-items, &__app-items {
     display: flex;
-    padding: 20px 30px;
-    background-color: #333;
-    justify-content: flex-end;
-    gap: 20px; 
+    align-items: center;
+    gap: 13px;
+  }
 
-    &__app-items {
-      flex: 1;
-    }
+  .menu-item {
+    color: white;
 
-    &__action-items, &__app-items {
-      display: flex;
-      align-items: center;
-      gap: 13px;
-    }
-
-    .menu-item {
-      color: white;
-
-      &:hover {
-        cursor: pointer;
-      }
+    &:hover {
+      cursor: pointer;
     }
   }
+}
 </style>
