@@ -1,7 +1,9 @@
 <template>
   <div>
     <app-menu />
-    <router-view></router-view>
+    <main class="main-content-container">
+      <router-view></router-view>
+    </main>
   </div>
 </template>
 
@@ -68,5 +70,9 @@ table {
 }
 a{
   text-decoration: none;
+}
+
+.main-content-container {
+  height: calc(100vh - (40px + 1rem));
 }
 </style>
