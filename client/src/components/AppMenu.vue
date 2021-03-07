@@ -1,4 +1,4 @@
-'<template>
+<template>
   <div class="menu-container">
     <div v-if="isLoggedIn" class="menu-container__app-items">
       <router-link to="/movies" class="menu-item">Movies</router-link>
@@ -42,7 +42,7 @@ export default {
   &__action-items, &__app-items {
     display: flex;
     align-items: center;
-    gap: 13px;
+    gap: 25px;
   }
 
   .menu-item {
