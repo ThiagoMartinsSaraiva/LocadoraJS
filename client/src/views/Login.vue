@@ -97,8 +97,8 @@ export default {
           height: 38px;
           text-indent: 6px;
           border-radius: 3px;
-          background-color: #555;
-          color: white;
+          background-color: #fff;
+          color: #333;
         }
       }
 
