@@ -58,10 +58,14 @@ export default {
   align-items: center;
   justify-content: center;
   gap: 20px;
+  background: url('../assets/images/login-form-wallpaper.jpeg');
+  background-position: center;
+  background-size: cover;
 
   &__title {
     text-align: center;
-    color: #333;
+    color: #fff;
+    text-shadow: 2px 2px 3px #000;
     font-size: 2.3rem;
     font-weight: 600;
   }
@@ -76,7 +80,7 @@ export default {
 
     form {
       width: 100%;
-      background-color: #333;
+      background-color: #333c;
       border-radius: 5px;
       border: 1.5px solid #3337;
       display: flex;
@@ -91,6 +95,7 @@ export default {
 
         label {
           color: white;
+          text-shadow: 1px 1px 3px #000;
         }
 
         input {
@@ -105,10 +110,11 @@ export default {
       .button-container {
         button {
           color: #fff;
+          text-shadow: 1px 1px 3px #000;
           border-radius: 3px;
           width: 50%;
           height: 30px;
-          background-color: #555;
+          background-color: #333;
         }
       }
     }
